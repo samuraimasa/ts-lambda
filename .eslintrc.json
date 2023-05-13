@@ -1,0 +1,10 @@
+{
+  "plugins": ["import", "unused-imports", "prettier"],
+  "ignorePatterns": ["node_modules/**", "dist/**"],
+  "rules": {
+    "import/order": "error",
+    "unused-imports/no-unused-imports": "error",
+    // _ で始まる引数は無視
+    "no-unused-vars": ["error", { "argsIgnorePattern": "^_" }]
+  }
+}

@@ -2,7 +2,8 @@
   "compilerOptions": {
     "module": "commonjs",
     "target": "es2017",
-    "outDir": "dist"
+    "outDir": "dist",
+    "esModuleInterop": true,
   },
   "include": [
     "src/index.ts"
