@@ -1,0 +1,14 @@
+service: sano-sample
+
+provider:
+  name: aws
+  region: ap-northeast-1
+  runtime: nodejs16.x
+
+functions:
+  hello:
+    handler: dist/index.handler
+    events:
+      - http:
+          path: hello
+          method: get
