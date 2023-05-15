@@ -3,12 +3,26 @@ import dayjs from 'dayjs';
 
 export const handler: Handler = async (event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> => {
   try {
-    if (event.hasOwnProperty('key')) {
-      console.log(event['key']);
+    if (event.hasOwnProperty('Records')) {
+      const records = event['Records'];
+      console.log(records);
+      const record = records[0];
+      if (record.hasOwnProperty('body')) {
+        const body = JSON.parse(record['body']);
+        console.log(body);
+        if (body.hasOwnProperty('message')) {
+          console.log(body['message']);
+        }
+      }
+    } else {
+      console.log(event);
     }
 
     const day = dayjs().add(1, 'd');
     console.log(day.format('YYYY-MM-DD'));
+
+    // 10s 待つ
+    await sleep(10000);
 
     return {
       statusCode: 200,
@@ -22,3 +36,7 @@ export const handler: Handler = async (event: APIGatewayEvent, context: Context)
     };
   }
 };
+
+function sleep(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
