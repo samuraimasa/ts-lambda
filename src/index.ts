@@ -1,7 +1,10 @@
-import { APIGatewayEvent, APIGatewayProxyResult, Context, Handler } from 'aws-lambda';
+import { APIGatewayProxyEvent, APIGatewayProxyResult, Context, Handler } from 'aws-lambda';
 import dayjs from 'dayjs';
 
-export const handler: Handler = async (event: APIGatewayEvent, context: Context): Promise<APIGatewayProxyResult> => {
+export const handler: Handler = async (
+  event: APIGatewayProxyEvent,
+  context: Context
+): Promise<APIGatewayProxyResult> => {
   try {
     if (event.hasOwnProperty('Records')) {
       const records = event['Records'];
@@ -21,8 +24,8 @@ export const handler: Handler = async (event: APIGatewayEvent, context: Context)
     const day = dayjs().add(1, 'd');
     console.log(day.format('YYYY-MM-DD'));
 
-    // 10s 待つ
-    await sleep(10000);
+    // 60s 待つ
+    await sleep(60000);
 
     return {
       statusCode: 200,

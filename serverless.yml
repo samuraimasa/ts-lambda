@@ -3,7 +3,7 @@ service: sano-sample
 provider:
   name: aws
   region: ap-northeast-1
-  runtime: nodejs16.x
+  runtime: nodejs18.x
   timeout: 60
   iamRoleStatements:
     - Effect: Allow
